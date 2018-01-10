@@ -1,0 +1,26 @@
+{
+  "name": "test-server",
+  "version": "0.0.2",
+  "description": "basic server for html testing",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "desoares1975",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/desoares1975/test-server.git"
+  },
+  "keywords": [
+    "test",
+    "html"
+  ],
+  "bugs": {
+    "url": "https://github.com/desoares1975/test-server/issues"
+  },
+  "homepage": "https://github.com/desoares1975/test-server#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
