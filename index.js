@@ -32,9 +32,9 @@ app.post('/paycheck', (req, res) => {
         return res.status(500).json(err);
       }
 
-      res.status(200).json({'paycheck': data.toString('base64')});
+      res.status(200).json({'hasPayment': true, 'file': data.toString('base64')});
     });
   } else {
-    res.status(200).json({'message': 'sem contra-cheque'});
+    res.status(200).json({'hasPayment': false, 'file': null});
   }
 });
