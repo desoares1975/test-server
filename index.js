@@ -26,15 +26,15 @@ app.post('/paycheck', (req, res) => {
     'asantos.pdf'
   ];
 
-  if (relate[req.body.userID]) {
-    fs.readFile(`${__dirname}/static/pdf/${relate[req.body.userID]}`, (err, data) => {
-      if (err) {
-        return res.status(500).json(err);
-      }
-
-      res.status(200).json({'hasPayment': true, 'file': data.toString('base64')});
-    });
-  } else {
-    res.status(200).json({'hasPayment': false, 'file': null});
+  if (!relate[req.body.userID]) {
+    return res.status(200).json({'hasPayment': false, 'file': null});
   }
+
+  fs.readFile(`${__dirname}/static/pdf/${relate[req.body.userID]}`, (err, data) => {
+    if (err) {
+      return res.status(500).json(err);
+    }
+
+    res.status(200).json({'hasPayment': true, 'file': data.toString('base64')});
+  });
 });
