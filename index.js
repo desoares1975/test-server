@@ -12,7 +12,7 @@ app.listen(8809, () => {
 app.use(bodyParser.urlencoded({'extended': true}));
 app.use(bodyParser.json());
 
-app.get('/leave', (req, res) => {
+app.post('/leave', (req, res) => {
   let hasVacation = req.body.userID === 3;
   let period = hasVacation ? '04/06/18,22/06/18' : null;
   res.status(200).send({hasVacation, period});
