@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({'extended': true}));
 app.use(bodyParser.json());
 
 app.get('/leave', (req, res) => {
-  let hasVacation = Math.floor(Math.random() * 10) % 2 === 0;
+  let hasVacation = req.body.userID === 3;
   let period = hasVacation ? '04/06/18,22/06/18' : null;
   res.status(200).send({hasVacation, period});
 });
@@ -37,4 +37,8 @@ app.post('/paycheck', (req, res) => {
 
     res.status(200).json({'hasPayment': true, 'file': data.toString('base64')});
   });
+});
+
+app.post('/hours', (req, res) => {
+  return res.status(200).json({'hasHours': true, 'hourBank': (req.body.userID === 3 ? '02:10:15' : '32:10:00')});
 });
