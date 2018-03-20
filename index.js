@@ -3,7 +3,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const fs = require('fs');
 
 app.use(express.static(`${__dirname}/static`));
 app.listen(8809, () => {
@@ -32,7 +31,7 @@ app.post('/paycheck', (req, res) => {
   }
 
   return res.status(200).json({
-    'hasPayment': false,
+    'hasPayment': true,
     'file': `http://mobi.bledit.com.br:3300/downloads/${relate[req.body.userID]}`,
     'paycheckMonth': '02/2018',
     'paidDate': '25/02/2018'});
