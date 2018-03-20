@@ -32,7 +32,7 @@ app.post('/paycheck', (req, res) => {
 
   return res.status(200).json({
     'hasPayment': true,
-    'file': `http://mobi.bledit.com.br:3300/downloads/${relate[req.body.userID]}`,
+    'file': `http://mobi.blendit.com.br:3300/downloads/${relate[req.body.userID]}`,
     'paycheckMonth': '02/2018',
     'paidDate': '25/02/2018'});
 });
