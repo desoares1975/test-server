@@ -28,18 +28,16 @@ app.post('/paycheck', (req, res) => {
   ];
 
   if (!relate[req.body.userID]) {
-    return res.status(200).json({'hasPayment': false, 'file': null});
+    return res.status(200).json({'hasPayment': false, 'file': null, 'paycheckMonth': '02/2018', 'paidDate': '25/02/2018' });
   }
 
-  fs.readFile(`${__dirname}/static/pdf/${relate[req.body.userID]}`, (err, data) => {
-    if (err) {
-      return res.status(500).json(err);
-    }
-
-    res.status(200).json({'hasPayment': true, 'file': data.toString('base64')});
-  });
+  return res.status(200).json({
+    'hasPayment': false,
+    'file': `http://mobi.bledit.com.br:3300/downloads/${relate[req.body.userID]}`,
+    'paycheckMonth': '02/2018',
+    'paidDate': '25/02/2018'});
 });
 
 app.post('/hours', (req, res) => {
-  return res.status(200).json({'hasHours': true, 'hourBank': (+req.body.userID === 3 ? '02:10:15' : '32:10:00')});
+  return res.status(200).json({'hasHours': true, 'hourBank': (+req.body.userID === 3 ? '02:10' : '32:30')});
 });
