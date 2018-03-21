@@ -15,7 +15,8 @@ app.post('/leave', (req, res) => {
 
   let hasVacation = +req.body.userID === 3;
   let period = hasVacation ? '04/06/18,22/06/18' : null;
-  res.status(200).send({hasVacation, period});
+  let negativeResponse = hasVacation ? false : ['Você não tem férias agendadas, você poderá realizar a solicitação através do portal do RH.'];
+  res.status(200).send({hasVacation, period, negativeResponse});
 });
 
 app.post('/paycheck', (req, res) => {
@@ -27,14 +28,22 @@ app.post('/paycheck', (req, res) => {
   ];
 
   if (!relate[req.body.userID]) {
-    return res.status(200).json({'hasPayment': false, 'file': null, 'paycheckMonth': '02/2018', 'paidDate': '25/02/2018' });
+    return res.status(200).json({
+      'hasPayment': false,
+      'file': null,
+      'paycheckMonth': '02/2018',
+      'paidDate': '25/02/2018',
+      'negativeResponse': 'Não foi possível encontrar o seu contracheque.'
+    });
   }
 
   return res.status(200).json({
     'hasPayment': true,
     'file': `http://mobi.blendit.com.br:3300/downloads/${relate[req.body.userID]}`,
     'paycheckMonth': '02/2018',
-    'paidDate': '25/02/2018'});
+    'paidDate': '25/02/2018',
+    'negativeResponse': false
+  });
 });
 
 app.post('/hours', (req, res) => {
